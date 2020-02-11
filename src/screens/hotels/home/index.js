@@ -58,7 +58,7 @@ const Hotels: () => React = props => {
         </View>
       )}
       <HotelList
-        data={searchResult ? searchResult : hotels}
+        data={searchResult.length > 0 ? searchResult : hotels}
         onCardPress={navigateToHotelDetail}
       />
     </View>
