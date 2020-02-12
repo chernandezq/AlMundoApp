@@ -13,8 +13,8 @@ const MapHotel: React = ({latitude, longitude}) => {
       initialRegion={{
         latitude: latitude,
         longitude: longitude,
-        latitudeDelta: 0.2,
-        longitudeDelta: 0.2,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
       }}>
       <Marker coordinate={coordinate} />
     </MapView>
