@@ -5,7 +5,7 @@ import {styles} from './style';
 import HotelCard from '../Card';
 
 const HotelList: React = ({onCardPress, data}) => {
-  const keyExtractor = data => data.id;
+  const keyExtractor = data => data._id;
 
   const renderItem = ({item}) => {
     return <HotelCard item={item} onPress={() => onCardPress(item)} />;
