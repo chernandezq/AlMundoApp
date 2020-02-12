@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
+import MapHotel from '../Map';
 import {styles} from './style';
+import {View, Text} from 'react-native';
+import CommentsHotel from '../Comments/index';
 import {getHotelDetails} from '../../../../../api/index';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-import {View, Text} from 'react-native';
-import MapHotel from '../Map';
 
 const HotelCardDetail: React.Component = ({hotel}) => {
   const {_id} = hotel;
   const [hotelData, setHotelData] = useState(hotel);
-  let latitude = 0;
-  let longitude = 0;
 
   React.useEffect(() => {
     getHotelInfo(_id);
@@ -20,11 +19,6 @@ const HotelCardDetail: React.Component = ({hotel}) => {
     data.stars = Math.round(data.stars);
     setHotelData(data);
   };
-
-  if (hotelData) {
-    latitude = hotelData.latitude;
-    longitude = hotelData.longitude;
-  }
 
   return (
     <View style={styles.container}>
@@ -49,7 +43,10 @@ const HotelCardDetail: React.Component = ({hotel}) => {
           <Icon name="map-marker" size={22} color={'gray'} />
           <Text style={styles.address}>{hotelData.address}</Text>
         </View>
-        <MapHotel latitude={latitude} longitude={longitude}></MapHotel>
+        <MapHotel
+          latitude={hotelData.latitude}
+          longitude={hotelData.longitude}></MapHotel>
+        <CommentsHotel comments={hotelData.comments}></CommentsHotel>
       </View>
     </View>
   );
